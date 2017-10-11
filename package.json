@@ -1,3 +1,6 @@
 {
-  "name": "react-webpack-babel"
+  "name": "react-webpack-babel",
+  "devDependencies": {
+    "webpack": "^3.7.0"
+  }
 }
