@@ -24,9 +24,9 @@ module.exports = {
       title: 'Output Management'
     }),
   ],
-  // devServer: {
-  //   contentBase: paths.SRC
-  // }
+  devServer: {
+    contentBase: paths.BUILD
+  },
   module: {
     rules: [
       {
