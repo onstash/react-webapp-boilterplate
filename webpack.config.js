@@ -1,5 +1,7 @@
 const path = require('path');
 
+const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -23,9 +25,11 @@ module.exports = {
       template: path.join(paths.SRC, 'index.html'),
       title: 'Output Management'
     }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: paths.BUILD
+    contentBase: paths.BUILD,
+    hot: true
   },
   module: {
     rules: [

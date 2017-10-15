@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-export default class HelloWorld extends Component {
-  render() {
-    return (
-      <div>
-        Hello from react
-      </div>
-    );
-  }
-}
+import HelloWorld from './hello-world';
 
 render(<HelloWorld />, document.getElementById('app'));
+
+if (module.hot) {
+  module.hot.accept('./hello-world', ({ default: HelloWorld }) => {
+    console.log('Accpeting the update hello-world Component');
+    render(<HelloWorld />, document.getElementById('app'));
+  });
+}
