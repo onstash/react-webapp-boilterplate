@@ -1,9 +1,11 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const BUILD_DIR = 'build';
 const paths = {
-  DIST: path.resolve(__dirname, 'dist'),
+  BUILD: path.resolve(__dirname, BUILD_DIR),
   SRC: path.resolve(__dirname, 'src'),
   JS: path.resolve(__dirname, 'src/js')
 };
@@ -11,12 +13,14 @@ const paths = {
 module.exports = {
   entry: path.join(paths.JS, 'app.js'),
   output: {
-    path: paths.DIST,
+    path: paths.BUILD,
     filename: 'app.bundle.js'
   },
   plugins: [
+    new CleanWebpackPlugin([BUILD_DIR]),
     new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
+      // template: path.join(paths.SRC, 'index.html'),
+      title: 'Output Management'
     }),
   ],
   // devServer: {
