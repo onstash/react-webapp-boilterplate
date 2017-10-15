@@ -16,6 +16,7 @@ module.exports = {
     path: paths.BUILD,
     filename: 'app.bundle.js'
   },
+  devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin([BUILD_DIR]),
     new HtmlWebpackPlugin({
