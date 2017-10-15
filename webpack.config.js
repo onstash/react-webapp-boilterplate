@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([BUILD_DIR]),
     new HtmlWebpackPlugin({
-      // template: path.join(paths.SRC, 'index.html'),
+      template: path.join(paths.SRC, 'index.html'),
       title: 'Output Management'
     }),
   ],
