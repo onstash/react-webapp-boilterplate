@@ -12,8 +12,21 @@ module.exports = webpackConfigMerge(commonWebpackConfig, {
      hot: true
    },
    plugins: [
-     new webpack.HotModuleReplacementPlugin()
-   ],
+     new webpack.HotModuleReplacementPlugin(),
+     new webpack.DefinePlugin({
+       'process.env': {
+         'NODE_ENV': JSON.stringify('development')
+       }
+     }),
+     new webpack.NamedModulesPlugin(),
+     new webpack.optimize.CommonsChunkPlugin({
+       name: "vendor",
+       minChunks: Infinity
+     }),
+     new webpack.optimize.CommonsChunkPlugin({
+       name: "runtime"
+     })
+   ]
    module: {
      rules: [
        {
