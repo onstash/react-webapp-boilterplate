@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 const BUILD_DIR = 'build';
 const paths = {
@@ -25,7 +26,8 @@ module.exports = {
       template: path.join(paths.SRC, 'index.html'),
       title: 'Output Management'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new UglifyJSWebpackPlugin()
   ],
   devServer: {
     contentBase: paths.BUILD,
