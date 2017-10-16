@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 const webpackConfigMerge = require('webpack-merge');
 const commonWebpackConfig = require('./webpack.common.js');
@@ -13,17 +14,20 @@ module.exports = webpackConfigMerge(commonWebpackConfig, {
          'NODE_ENV': JSON.stringify('production')
        }
      }),
+     new webpack.HashedModuleIdsPlugin(),
      new webpack.optimize.CommonsChunkPlugin({
-       name: 'vendor', // Specify the common bundle's name.
-       minChunks: Infinity,
-       // (with more entries, this ensures that no other module
-       //  goes into the vendor chunk)
+       name: 'vendor',
+       minChunks: Infinity
+     }),
+     new webpack.optimize.CommonsChunkPlugin({
+       name: 'runtime'
      })
    ],
    module: {
      rules: [
        {
          test: /\.(js|jsx)$/,
+         include: path.resolve(__dirname, "src"),
          exclude: /node_modules/,
          use: [
            'babel-loader'
