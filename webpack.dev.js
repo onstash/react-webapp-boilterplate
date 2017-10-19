@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const webpackConfigMerge = require('webpack-merge');
 const commonWebpackConfig = require('./webpack.common.js');
 
-const BUILD_DIR = 'build';
+const { paths, BUILD_DIR } = require('./webpack-helper');
 
 module.exports = webpackConfigMerge(commonWebpackConfig, {
    devtool: 'inline-source-map',
@@ -50,5 +50,9 @@ module.exports = webpackConfigMerge(commonWebpackConfig, {
    },
    resolve: {
      extensions: ['.js', '.jsx']
+   },
+   output: {
+     path: paths.BUILD,
+     filename: '[name].[hash].js'
    }
  });

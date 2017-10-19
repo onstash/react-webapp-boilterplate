@@ -7,6 +7,8 @@ const commonWebpackConfig = require('./webpack.common.js');
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const { paths, BUILD_DIR } = require('./webpack-helper');
+
 module.exports = webpackConfigMerge(commonWebpackConfig, {
    plugins: [
      new UglifyJSWebpackPlugin(),
@@ -50,5 +52,9 @@ module.exports = webpackConfigMerge(commonWebpackConfig, {
    },
    resolve: {
      extensions: ['.js', '.jsx']
+   },
+   output: {
+     path: paths.BUILD,
+     filename: '[name].[chunkhash].js'
    }
  });

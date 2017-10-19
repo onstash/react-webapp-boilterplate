@@ -3,12 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const BUILD_DIR = 'build';
-const paths = {
-  BUILD: path.resolve(__dirname, BUILD_DIR),
-  SRC: path.resolve(__dirname, 'src'),
-  JS: path.resolve(__dirname, 'src/js')
-};
+const { paths, BUILD_DIR } = require('./webpack-helper');
 
 module.exports = {
   entry: {
@@ -24,9 +19,5 @@ module.exports = {
       template: path.join(paths.SRC, 'index.html'),
       title: 'Production'
     })
-  ],
-  output: {
-    path: paths.BUILD,
-    filename: '[name].[chunkhash].js'
-  }
+  ]
 };
