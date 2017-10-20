@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 
 const webpackConfigMerge = require('webpack-merge');
@@ -6,9 +7,17 @@ const commonWebpackConfig = require('./webpack.common.js');
 const { paths, BUILD_DIR } = require('./webpack-helper');
 
 module.exports = webpackConfigMerge(commonWebpackConfig, {
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      'react-hot-loader/patch',
+      path.join(paths.JS, 'app.js')
+    ]
+  },
    devtool: 'inline-source-map',
    devServer: {
-     contentBase: `./${BUILD_DIR}`,
+     contentBase: paths.SRC,
      hot: true
    },
    plugins: [
