@@ -8,7 +8,7 @@ const { paths, BUILD_DIR } = require('./webpack-helper');
 module.exports = webpackConfigMerge(commonWebpackConfig, {
    devtool: 'inline-source-map',
    devServer: {
-     contentBase: `./${BUILD_DIR}`,
+     contentBase: paths.SRC,
      hot: true
    },
    plugins: [
