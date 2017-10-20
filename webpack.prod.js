@@ -12,7 +12,11 @@ const { paths, BUILD_DIR } = require('./webpack-helper');
 
 module.exports = webpackConfigMerge(commonWebpackConfig, {
   entry: {
-    app: './src/index.js'
+    app: path.join(paths.JS, 'app.js'),
+    vendor: [
+      'react',
+      'react-dom'
+    ]
   },
   plugins: [
     new UglifyJSWebpackPlugin(),
