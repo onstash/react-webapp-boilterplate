@@ -6,6 +6,7 @@ const commonWebpackConfig = require('./webpack.common.js');
 
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { paths, BUILD_DIR } = require('./webpack-helper');
 
@@ -31,6 +32,15 @@ module.exports = webpackConfigMerge(commonWebpackConfig, {
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
       allChunks: true
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: 'bundle-analyser-report.html',
+      openAnalyzer: true,
+      defaultSizes: 'stat',
+      generateStatsFile: true,
+      statsFilename: 'stats.json',
+      logLevel: 'info'
     })
   ],
   module: {
